@@ -156,7 +156,7 @@ function LoginForm() {
     return (
         <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-5 md:mb-10">
-                <h2 className="text-2xl md:text-3xl uppercase font-extrabold tracking-tight text-[#003a30] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}   >
+                <h2 className="text-xl md:text-2xl uppercase font-extrabold tracking-tight text-[#003a30] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}   >
                     Iniciar sesión
                 </h2>
 
@@ -233,7 +233,7 @@ export default function LoginPage() {
                                 <div className="flex items-center gap-2 mb-9">
                                     <img src="./Logo.png" className="w-20" alt="Logo" />
                                 </div>
-                                <h2 className="text-5xl uppercase font-extrabold tracking-tight text-[#f0ede6] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}     >
+                                <h2 className="text-4xl uppercase font-extrabold tracking-tight text-[#f0ede6] leading-none" style={{ fontFamily: "'Syne', sans-serif" }}     >
                                     Bienvenido
                                     <br />
                                     <em className="text-[#8c916c] italic">de regreso.</em>
@@ -244,7 +244,7 @@ export default function LoginPage() {
                             <div className="absolute" style={{ left: "35%", top: "0px", width: "300px" }}>
                                 <FeatureCard {...CARDS[0]} />
                             </div>
-                            <div className="absolute" style={{ right: "50%", bottom: "18px", width: "300px" }}>
+                            <div className="absolute" style={{ right: "52%", bottom: "18px", width: "300px" }}>
                                 <FeatureCard {...CARDS[1]} />
                             </div>
                             <div className="absolute" style={{ right: "4%", bottom: "0px", width: "300px" }}>

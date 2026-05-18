@@ -170,7 +170,7 @@ export default function IngredientsPage() {
             <div className='flex items-end shrink-0 h-[40px]'>
 
                 {/* ── Pestaña ── */}
-                <div className='relative flex items-center gap-2 px-4 h-10 border border-b-0 border-white/40 shrink-0' style={{ width: 'min(55%, 630px)', ...GLASS, borderRadius: '10px 10px 0 0' }}>
+                <div className='relative flex items-center gap-2 px-4 h-10 border border-b-0 border-white/40 shrink-0' style={{ width: 'min(65%, 630px)', ...GLASS, borderRadius: '10px 10px 0 0' }}>
 
                     <FlaskConical size={13} style={{ color: '#55624a', flexShrink: 0 }} />
                     <span className="text-[13px] font-semibold text-gray-700 shrink-0" style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -220,36 +220,51 @@ export default function IngredientsPage() {
                 {/* ── Botones de acción ── */}
                 <div className="flex items-center gap-1.5 pl-8 pb-1.5">
 
-                    <button onClick={openCreate} className="flex items-center gap-1.5 h-7 px-3 rounded-lg border-none text-white text-[12px] font-semibold cursor-pointer hover:opacity-90 transition-opacity" style={{ background: '#55624a', boxShadow: '0 2px 8px rgba(85,98,74,0.30)', fontFamily: "'Syne', sans-serif" }}>
+                    <button onClick={openCreate}
+                        className="flex items-center gap-1.5 h-7 px-3 rounded-lg border-none text-white text-[12px] font-semibold cursor-pointer hover:opacity-90 transition-opacity"
+                        style={{ background: '#55624a', boxShadow: '0 2px 8px rgba(85,98,74,0.30)', fontFamily: "'Syne', sans-serif" }}>
                         <Plus size={13} />
                         Agregar
                     </button>
 
                     <div className="w-px h-4 bg-gray-300/50 mx-0.5" />
 
-                    <button onClick={() => hasSelection && openDrawer(selectedIngredient)} disabled={!hasSelection} title="Ver historial" className="flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-[12px] font-medium border transition-all duration-150" style={{ background: hasSelection ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#4b5563' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }} onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,1)'; }} onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; }}>
-                        <History size={12} /> Historial
+                    <button onClick={() => hasSelection && openDrawer(selectedIngredient)} disabled={!hasSelection} title="Ver historial"
+                        className="flex items-center justify-center w-7 h-7 rounded-lg border transition-all duration-150"
+                        style={{ background: hasSelection ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#4b5563' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }}
+                        onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,1)'; }}
+                        onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; }}>
+                        <History size={13} />
                     </button>
 
-                    <button onClick={() => hasSelection && openStock(selectedIngredient)} disabled={!hasSelection} title="Registrar movimiento" className="flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-[12px] font-medium border transition-all duration-150" style={{ background: hasSelection ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#4b5563' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }} onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,1)'; }} onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; }}>
-                        <ArrowUpDown size={12} />
-                        Movimiento
+                    <button onClick={() => hasSelection && openStock(selectedIngredient)} disabled={!hasSelection} title="Registrar movimiento"
+                        className="flex items-center justify-center w-7 h-7 rounded-lg border transition-all duration-150"
+                        style={{ background: hasSelection ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#4b5563' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }}
+                        onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,1)'; }}
+                        onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; }}>
+                        <ArrowUpDown size={13} />
                     </button>
 
-                    <button onClick={() => hasSelection && openEdit(selectedIngredient)} disabled={!hasSelection} title="Editar ingrediente" className="flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-[12px] font-medium border transition-all duration-150" style={{ background: hasSelection ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#4b5563' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }} onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,1)'; }} onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; }}>
-                        <Edit2 size={12} />
-                        Editar
+                    <button onClick={() => hasSelection && openEdit(selectedIngredient)} disabled={!hasSelection} title="Editar ingrediente"
+                        className="flex items-center justify-center w-7 h-7 rounded-lg border transition-all duration-150"
+                        style={{ background: hasSelection ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(0,0,0,0.12)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#4b5563' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }}
+                        onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,1)'; }}
+                        onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(255,255,255,0.85)'; }}>
+                        <Edit2 size={13} />
                     </button>
 
-                    <button onClick={() => hasSelection && setDelete(selectedIngredient)} disabled={!hasSelection} title="Desactivar ingrediente" className="flex items-center gap-1.5 h-7 px-2.5 rounded-lg text-[12px] font-medium border transition-all duration-150" style={{ background: hasSelection ? 'rgba(254,242,242,0.9)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(239,68,68,0.2)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#ef4444' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(239,68,68,0.1)' : 'none' }} onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(254,226,226,0.95)'; }} onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(254,242,242,0.9)'; }}>
-                        <Trash2 size={12} />
-                        Desactivar
+                    <button onClick={() => hasSelection && setDelete(selectedIngredient)} disabled={!hasSelection} title="Desactivar ingrediente"
+                        className="flex items-center justify-center w-7 h-7 rounded-lg border transition-all duration-150"
+                        style={{ background: hasSelection ? 'rgba(254,242,242,0.9)' : 'rgba(0,0,0,0.04)', border: hasSelection ? '1px solid rgba(239,68,68,0.2)' : '1px solid rgba(0,0,0,0.06)', color: hasSelection ? '#ef4444' : '#c4c9c0', cursor: hasSelection ? 'pointer' : 'not-allowed', boxShadow: hasSelection ? '0 1px 3px rgba(239,68,68,0.1)' : 'none' }}
+                        onMouseEnter={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(254,226,226,0.95)'; }}
+                        onMouseLeave={e => { if (hasSelection) e.currentTarget.style.background = 'rgba(254,242,242,0.9)'; }}>
+                        <Trash2 size={13} />
                     </button>
                 </div>
             </div>
 
             {/* ══ CUERPO PRINCIPAL ══ */}
-            <div className="flex-1 flex flex-col overflow-hidden border border-white/40 rounded-b-2xl rounded-tr-2xl" style={{ ...GLASS }}>
+            <div className="flex-1 flex flex-col overflow-hidden  rounded-b-2xl rounded-tr-2xl" style={{ ...GLASS }}>
 
                 {/* Encabezado de columnas — sorteable */}
                 <div className="grid shrink-0 px-5 py-3 border-b mt-2 ml-1 mr-1 bg-white rounded-t-2xl" style={{ gridTemplateColumns: TABLE_COLS, borderColor: 'rgba(0,0,0,0.06)' }} >
