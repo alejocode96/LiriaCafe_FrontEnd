@@ -216,7 +216,6 @@ export default function LoginPage() {
 
     return (
         <>
-            <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
             {/* ─── ROOT: usa 100dvh para descontar la barra de iOS Safari ─── */}
             <div className="w-screen overflow-hidden flex font-sans relative" style={{ height: "100dvh" }}    >

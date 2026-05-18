@@ -372,31 +372,20 @@ export const formatTime = (dateStr) =>
 //
 // ==========================================================
 
-export const formatDateTime = (dateStr) =>
-
-
-  // ========================================================
-  // TEMPLATE STRING
-  // ========================================================
-  //
-  // Reutiliza funciones previas:
-  //
-  // formatDate()
-  // formatTime()
-  //
-  // Beneficios:
-  //
-  // ✅ Código reutilizable
-  // ✅ Más mantenible
-  // ✅ Evita duplicación
-  // ✅ Consistencia visual
-  //
-  // Lo opuesto a copiar y pegar funciones
-  // hasta que el proyecto parece fanfiction.
-  //
-  // ========================================================
-
-  `${formatDate(dateStr)} ${formatTime(dateStr)}`;
+export function formatDateTime(raw) {
+    if (!raw) return '—';
+    // Asegura que se interprete como UTC agregando 'Z' si no lo tiene
+    const utc = raw.endsWith('Z') || raw.includes('+') ? raw : raw + 'Z';
+    return new Intl.DateTimeFormat('es-CO', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'America/Bogota',
+    }).format(new Date(utc));
+}
 
 
 

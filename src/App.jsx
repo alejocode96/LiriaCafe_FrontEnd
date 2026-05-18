@@ -5,6 +5,7 @@ import { useAuthStore } from './store/auth.store';
 
 import Layout from './components/layout/Layout';
 import LoginPage from './pages/Login/LoginPage';
+import IngredientsPage from './pages/Ingredients/IngredientsPage';
 
 // Importar páginas a medida que las vayas creando
 // import DashboardPage from './pages/Dashboard/DashboardPage';
@@ -28,12 +29,13 @@ export default function App() {
 
           {/* Privadas — todas dentro del Layout */}
           <Route path="/" element={<PrivateRoute>   <Layout />  </PrivateRoute>} >
+
             {/* Aquí van todas las rutas internas */}
             {/* <Route index element={<DashboardPage />} /> */}
             {/* <Route path="pos" element={<POSPage />} /> */}
             {/* <Route path="tables" element={<TablesPage />} /> */}
             {/* <Route path="products" element={<ProductsPage />} /> */}
-            {/* <Route path="ingredients" element={<IngredientsPage />} /> */}
+            <Route path="ingredients" element={<IngredientsPage />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />
