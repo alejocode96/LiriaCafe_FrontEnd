@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAuthStore } from "../store/auth.store";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000/api/v1";
 
@@ -43,6 +44,13 @@ api.interceptors.response.use(
       return Promise.reject(normalizeError(error));
     }
 
+    // Endpoints que devuelven 401 por lógica de negocio (contraseña incorrecta, token inválido),
+    // no por token de sesión expirado → propagar sin intentar refresh ni hacer logout.
+    const BUSINESS_401_URLS = ["/auth/change-password", "/auth/reset_password", "/auth/forgot-password"];
+    if (BUSINESS_401_URLS.some((u) => original.url?.includes(u))) {
+      return Promise.reject(normalizeError(error));
+    }
+
     if (isRefreshing) {
       // Encolar mientras se refresca
       return new Promise((resolve, reject) => {
@@ -65,7 +73,11 @@ api.interceptors.response.use(
       });
 
       const newToken = data.data?.accessToken ?? data.accessToken;
-      localStorage.setItem("access_token", newToken);
+      const newRefresh = data.data?.refreshToken ?? data.refreshToken;
+
+      // Actualizar tokens en localStorage y en el store de Zustand
+      useAuthStore.getState().setAccessToken(newToken);
+      if (newRefresh) localStorage.setItem("refresh_token", newRefresh);
       api.defaults.headers.common.Authorization = `Bearer ${newToken}`;
 
       processQueue(null, newToken);
@@ -98,9 +110,11 @@ function normalizeError(error) {
 }
 
 function forceLogout() {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
-  // Redirigir al login sin depender de React Router
+  // Limpia tokens Y el estado persistido de Zustand (pos-auth en localStorage)
+  try { useAuthStore.getState().logout(); } catch (_) {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+  }
   if (!window.location.pathname.includes("/login")) {
     window.location.href = "/login";
   }

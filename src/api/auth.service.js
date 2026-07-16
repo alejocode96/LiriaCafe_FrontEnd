@@ -10,3 +10,15 @@ export const refreshTokenRequest = (refreshToken) =>
 
 /** POST /auth/logout  */
 export const logoutRequest = () => api.post("/auth/logout");
+
+/** POST /auth/change-password — cambio obligatorio o voluntario */
+export const changePasswordRequest = (data) =>
+  api.post("/auth/change-password", data);
+
+/** POST /auth/forgot-password — solicitud de recuperación */
+export const forgotPasswordRequest = (correo) =>
+  api.post("/auth/forgot-password", { correo });
+
+/** POST /auth/reset_password — restablecer con token */
+export const resetPasswordRequest = (data) =>
+  api.post("/auth/reset_password", data);

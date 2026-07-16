@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Tooltip del sidebar colapsado */
+a:hover .sidebar-tooltip {
+    opacity: 1 !important;
+}

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { User, Lock, Eye, EyeOff, Keyboard } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 
 /* ─────────────────────────────────────────────────────────────
@@ -343,6 +344,7 @@ function LoginForm() {
     const [useVirtualKb, setUseVirtualKb] = useState(false);
     const [activeVkbField, setActiveVkbField] = useState(null);
     const { handleLogin, loading } = useLogin();
+    const navigate = useNavigate();
 
     const openVkb = useCallback((field) => {
         setActiveVkbField(field);
@@ -480,6 +482,7 @@ function LoginForm() {
 
                         <button
                             type="button"
+                            onClick={() => navigate("/forgot-password")}
                             style={{ background: "none", border: "none", fontSize: 14, color: "#55624a", cursor: "pointer", padding: 0 }}
                         >
                             Recuperar acceso

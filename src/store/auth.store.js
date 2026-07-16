@@ -19,28 +19,39 @@ export const useAuthStore = create(
       accessToken: null,
       refreshToken: null,
       isAuthenticated: false,
+      requiereCambioClave: false,
 
       /** Llamado tras login exitoso con la respuesta del backend */
       login: (data) => {
         const { accessToken, refreshToken, usuario } = data;
 
-        // El interceptor de axios lee de aquí
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("refresh_token", refreshToken);
+
+        const requiere =
+          usuario?.requiereCambioClave === true ||
+          data?.requiereCambioClave === true;
 
         set({
           usuario,
           accessToken,
           refreshToken,
           isAuthenticated: true,
+          requiereCambioClave: requiere,
         });
       },
+
+      /** Marca el cambio de clave como completado */
+      clearRequiereCambioClave: () => set({ requiereCambioClave: false }),
 
       /** Actualiza solo el access token (después de refresh) */
       setAccessToken: (token) => {
         localStorage.setItem("access_token", token);
         set({ accessToken: token });
       },
+
+      /** Sobreescribe el usuario con datos completos de GET /auth/me */
+      setUsuario: (data) => set({ usuario: data }),
 
       /** Cierra sesión y limpia todo */
       logout: () => {
@@ -51,18 +62,18 @@ export const useAuthStore = create(
           accessToken: null,
           refreshToken: null,
           isAuthenticated: false,
+          requiereCambioClave: false,
         });
       },
     }),
     {
       name: "pos-auth",
-      // Solo persistimos lo esencial; los tokens también van a localStorage
-      // directamente para el interceptor
       partialize: (state) => ({
         usuario: state.usuario,
         accessToken: state.accessToken,
         refreshToken: state.refreshToken,
         isAuthenticated: state.isAuthenticated,
+        requiereCambioClave: state.requiereCambioClave,
       }),
     }
   )
